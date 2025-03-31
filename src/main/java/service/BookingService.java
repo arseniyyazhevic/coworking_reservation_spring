@@ -1,15 +1,19 @@
 package service;
 
-import dao.BookingDao;
+import dao.BookingDAO;
 import entity.Booking;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 import util.BookingDBUtils;
 
 import java.util.*;
 
+@Service
+@Transactional
 public class BookingService {
 
-    private final BookingDao bookingDao;
-    public BookingService(BookingDao bookingDao) {
+    private final BookingDAO bookingDao;
+    public BookingService(BookingDAO bookingDao) {
         this.bookingDao = bookingDao;
     }
 

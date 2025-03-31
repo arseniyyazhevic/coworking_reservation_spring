@@ -1,21 +1,16 @@
 package service;
 
-import dao.CoworkingSpaceDao;
+import dao.CoworkingSpaceDAO;
 import entity.CoworkingSpace;
-import ui.ConsoleOutput;
 import util.CoworkingSpaceDBUtils;
-import util.DBUtils;
-import util.FileUtils;
-import util.sortingUtils.SortingUtil;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 public class CoworkingSpaceService {
 
-    private final CoworkingSpaceDao coworkingSpaceDao;
+    private final CoworkingSpaceDAO coworkingSpaceDao;
 
-    public CoworkingSpaceService(CoworkingSpaceDao coworkingSpaceDao) {
+    public CoworkingSpaceService(CoworkingSpaceDAO coworkingSpaceDao) {
         this.coworkingSpaceDao = coworkingSpaceDao;
     }
 

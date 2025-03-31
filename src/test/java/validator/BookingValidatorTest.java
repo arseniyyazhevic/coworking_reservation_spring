@@ -1,14 +1,11 @@
 package validator;
 
-import dao.BookingDao;
-import entity.Booking;
+import dao.BookingDAO;
 import exception.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.BookingService;
 import validation.BookingValidator;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +13,7 @@ public class BookingValidatorTest {
     private BookingValidator bookingValidator;
 
     @BeforeEach
-    public void prepareInstance() {bookingValidator = new BookingValidator(new BookingService(new BookingDao()));}
+    public void prepareInstance() {bookingValidator = new BookingValidator(new BookingService(new BookingDAO()));}
 
     @Test
     void getValidateDate_notCorrectInput_throwValidationException(){
