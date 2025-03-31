@@ -1,11 +1,10 @@
 package validator;
 
-import dao.CoworkingSpaceDao;
+import dao.CoworkingSpaceDAO;
 import exception.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.CoworkingSpaceService;
-import validation.BookingValidator;
 import validation.CoworkingSpaceValidator;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,7 +14,7 @@ public class CoworkingSpaceValidatorTest {
     private CoworkingSpaceValidator coworkingSpaceValidator;
 
     @BeforeEach
-    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceDao()));}
+    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceDAO()));}
 
     @Test
     void getValidatePrice_notCorrectInput_throwValidationException(){

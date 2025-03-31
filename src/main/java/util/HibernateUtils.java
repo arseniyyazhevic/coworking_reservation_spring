@@ -7,15 +7,15 @@ import org.hibernate.cfg.Configuration;
 
 
 public class HibernateUtils {
-        @Getter
-        private static final SessionFactory sessionFactory = buildSessionFactory();
+    @Getter
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-        private static SessionFactory buildSessionFactory() {
-            try {
-                return new Configuration().configure().buildSessionFactory();
-            } catch (Throwable ex) {
-                throw new ExceptionInInitializerError(ex);
-            }
+    private static SessionFactory buildSessionFactory() {
+        try {
+            return new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError(ex);
         }
+    }
 
 }

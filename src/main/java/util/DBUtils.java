@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.Properties;
 
 public class DBUtils {
-    private static final String PROPERTIES_OF_DB_CONNECTION_PATH = "src/main/resources/database.properties";
+    private static final String PROPERTIES_OF_DB_CONNECTION_PATH = "src/main/resources/application.properties";
 
     public static Optional<HashMap<Long, CoworkingSpace>> loadCoworkingSpacesFromDB() {
         HashMap<Long, CoworkingSpace> dbDataCoworkingSpaces = new HashMap<>();
