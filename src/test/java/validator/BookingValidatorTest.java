@@ -1,11 +1,11 @@
 package validator;
 
-import dao.BookingDAO;
-import exception.ValidationException;
+import course.dao.BookingDAO;
+import course.exception.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.BookingService;
-import validation.BookingValidator;
+import course.service.BookingService;
+import course.validation.BookingValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
