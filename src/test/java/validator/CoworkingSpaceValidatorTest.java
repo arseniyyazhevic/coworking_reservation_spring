@@ -1,11 +1,11 @@
 package validator;
 
-import dao.CoworkingSpaceDAO;
-import exception.ValidationException;
+import course.dao.CoworkingSpaceDAO;
+import course.exception.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.CoworkingSpaceService;
-import validation.CoworkingSpaceValidator;
+import course.service.CoworkingSpaceService;
+import course.validation.CoworkingSpaceValidator;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
