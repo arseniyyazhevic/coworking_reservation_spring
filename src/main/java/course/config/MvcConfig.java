@@ -17,7 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public ClassLoaderTemplateResolver templateResolver() {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
-        resolver.setPrefix("WEB-INF/views/");
+        resolver.setPrefix("templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML");
         resolver.setCharacterEncoding("UTF-8");

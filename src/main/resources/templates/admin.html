@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+<h1>Admin Panel</h1>
+<form th:action="@{/admin/add-coworking}" method="post">
+    <button type="submit">Add Coworking Space</button>
+</form>
+<form th:action="@{/admin/remove-coworking}" method="post">
+    <input type="text" name="id" placeholder="Coworking ID">
+    <button type="submit">Remove Coworking Space</button>
+</form>
+<form th:action="@{/admin/update-coworking}" method="post">
+    <input type="text" name="id" placeholder="Coworking ID">
+    <button type="submit">Update Coworking Space</button>
+</form>
+<a th:href="@{/}">Back to Home</a>
+</body>
+</html>

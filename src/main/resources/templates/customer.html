@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+</head>
+<body>
+<h1>Customer Dashboard</h1>
+<a th:href="@{/customer/coworking-spaces}">View Coworking Spaces</a>
+<form th:action="@{/customer/reserve}" method="post">
+    <input type="text" name="coworkingId" placeholder="Coworking ID">
+    <input type="text" name="date" placeholder="YYYY-MM-DD">
+    <input type="text" name="time" placeholder="HH:mm">
+    <button type="submit">Make a Reservation</button>
+</form>
+<a th:href="@{/customer/reservations}">View My Reservations</a>
+<form th:action="@{/customer/cancel-reservation}" method="post">
+    <input type="text" name="reservationId" placeholder="Reservation ID">
+    <button type="submit">Cancel Reservation</button>
+</form>
+<a th:href="@{/}">Back to Home</a>
+</body>
+</html>
