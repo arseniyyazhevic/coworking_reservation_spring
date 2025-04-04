@@ -1,6 +1,6 @@
 package course.service;
 
-import course.dao.CoworkingSpaceDAO;
+import course.repository.CoworkingSpaceRepository;
 import course.entity.CoworkingSpace;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class CoworkingSpaceServiceTest {
 
     @BeforeEach
     public void prepareTestInstance() {
-        coworkingSpaceService = new CoworkingSpaceService(new CoworkingSpaceDAO());
+        coworkingSpaceService = new CoworkingSpaceService(new CoworkingSpaceRepository());
     }
 
     @Test

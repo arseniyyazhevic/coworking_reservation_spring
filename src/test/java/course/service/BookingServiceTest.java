@@ -1,6 +1,6 @@
 package course.service;
 
-import course.dao.BookingDAO;
+import course.repository.BookingRepository;
 import course.entity.Booking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class BookingServiceTest {
 
     @BeforeEach
     public void prepareTestInstance() {
-        bookingService = new BookingService(new BookingDAO());
+        bookingService = new BookingService(new BookingRepository());
     }
 
     @Test
