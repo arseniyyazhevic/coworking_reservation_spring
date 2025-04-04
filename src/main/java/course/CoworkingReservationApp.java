@@ -12,7 +12,7 @@ public class CoworkingReservationApp {
 //        coworkingSpaceService.loadCoworkingSpacesFromDB();
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         MenuHandler menuHandler = applicationContext.getBean(MenuHandler.class);
-        menuHandler.processingReservationApp();
+//        menuHandler.processingReservationApp();
     }
 }
 

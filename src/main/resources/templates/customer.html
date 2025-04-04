@@ -2,22 +2,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Dashboard</title>
+    <title>Customer Panel</title>
 </head>
 <body>
-<h1>Customer Dashboard</h1>
+<h1>Customer Panel</h1>
+
 <a th:href="@{/customer/coworking-spaces}">View Coworking Spaces</a>
-<form th:action="@{/customer/reserve}" method="post">
-    <input type="text" name="coworkingId" placeholder="Coworking ID">
-    <input type="text" name="date" placeholder="YYYY-MM-DD">
-    <input type="text" name="time" placeholder="HH:mm">
-    <button type="submit">Make a Reservation</button>
+
+<form th:action="@{/customer/add-booking}" method="post">
+    <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
+    <input type="text" name="customerName" placeholder="Customer Name">
+    <input type="date" name="date" placeholder="Booking Date">
+    <input type="text" name="startAndEndOfBookingTime" placeholder="Time Interval (e.g. 18:00-20:00)">
+    <button type="submit">Make Reservation</button>
 </form>
-<a th:href="@{/customer/reservations}">View My Reservations</a>
-<form th:action="@{/customer/cancel-reservation}" method="post">
-    <input type="text" name="reservationId" placeholder="Reservation ID">
+
+<form th:action="@{/customer/update-booking}" method="post">
+    <input type="text" name="id" placeholder="Booking ID">
+    <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
+    <input type="text" name="customerName" placeholder="Customer Name">
+    <input type="date" name="date" placeholder="Booking Date">
+    <input type="text" name="startAndEndOfBookingTime" placeholder="Time Interval (e.g. 18:00-20:00)">
+    <button type="submit">Update Booking</button>
+</form>
+
+<a th:href="@{/customer/bookings}">View My Reservations</a>
+
+<form th:action="@{/customer/cancel-booking}" method="post">
+    <input type="text" name="id" placeholder="Reservation ID">
     <button type="submit">Cancel Reservation</button>
 </form>
+
 <a th:href="@{/}">Back to Home</a>
 </body>
 </html>
