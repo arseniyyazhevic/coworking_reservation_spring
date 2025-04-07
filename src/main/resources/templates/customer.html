@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Panel</title>
+</head>
+<body>
+<h1>Customer Panel</h1>
+
+<a th:href="@{/customer/coworking-spaces}">View Coworking Spaces</a>
+
+<form th:action="@{/customer/add-booking}" method="post">
+    <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
+    <input type="text" name="customerName" placeholder="Customer Name">
+    <input type="date" name="date" placeholder="Booking Date">
+    <input type="text" name="startAndEndOfBookingTime" placeholder="Time Interval (e.g. 18:00-20:00)">
+    <button type="submit">Make Reservation</button>
+</form>
+
+<form th:action="@{/customer/update-booking}" method="post">
+    <input type="text" name="id" placeholder="Booking ID">
+    <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
+    <input type="text" name="customerName" placeholder="Customer Name">
+    <input type="date" name="date" placeholder="Booking Date">
+    <input type="text" name="startAndEndOfBookingTime" placeholder="Time Interval (e.g. 18:00-20:00)">
+    <button type="submit">Update Booking</button>
+</form>
+
+<a th:href="@{/customer/bookings}">View My Reservations</a>
+
+<form th:action="@{/customer/cancel-booking}" method="post">
+    <input type="text" name="id" placeholder="Reservation ID">
+    <button type="submit">Cancel Reservation</button>
+</form>
+
+<a th:href="@{/}">Back to Home</a>
+</body>
+</html>

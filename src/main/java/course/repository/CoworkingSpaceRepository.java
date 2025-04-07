@@ -1,4 +1,4 @@
-package course.dao;
+package course.repository;
 
 import course.entity.CoworkingSpace;
 import jakarta.persistence.EntityManager;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CoworkingSpaceDAO {
+public class CoworkingSpaceRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

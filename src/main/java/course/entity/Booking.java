@@ -30,6 +30,6 @@ public class Booking {
     private CoworkingSpace coworkingSpace;
 
 
-    public Booking(String customerName, String timeInterval, LocalDate date, int coworkingSpaceId) { //TODO
+    public Booking(String customerName, String timeInterval, LocalDate date, int coworkingSpaceId) {
     }
 }

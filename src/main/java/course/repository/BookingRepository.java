@@ -1,4 +1,4 @@
-package course.dao;
+package course.repository;
 
 import course.entity.Booking;
 import jakarta.persistence.EntityManager;
@@ -10,24 +10,24 @@ import java.util.List;
 
 
 @Repository
-public class BookingDAO {
+public class BookingRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
     public void saveBooking(Booking booking) {
-       entityManager.persist(booking);
+        entityManager.persist(booking);
     }
 
     @Transactional
     public Booking getBookingById(Long id) {
-            return entityManager.find(Booking.class, id);
+        return entityManager.find(Booking.class, id);
     }
 
     @Transactional
     public List<Booking> getAllBookings() {
-            return entityManager.createQuery("from Booking", Booking.class).getResultList();
+        return entityManager.createQuery("from Booking", Booking.class).getResultList();
     }
 
     @Transactional

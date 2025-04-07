@@ -27,19 +27,12 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
-        Properties properties = new Properties();
         DriverManagerDataSource dataSource = null;
-        try (InputStream in = Files.newInputStream(Paths.get(PROPERTIES_OF_DB_CONNECTION_PATH))) {
-            properties.load(in);
             dataSource = new DriverManagerDataSource();
-            dataSource.setDriverClassName(properties.getProperty("driver"));
-            dataSource.setUrl(properties.getProperty("url"));
-            dataSource.setUsername(properties.getProperty("username"));
-            dataSource.setPassword(properties.getProperty("password"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            dataSource.setDriverClassName("org.postgresql.Driver");
+            dataSource.setUrl("jdbc:postgresql://localhost:5433/coworking_reservation");
+            dataSource.setUsername("postgres");
+            dataSource.setPassword("root");
         return dataSource;
     }
 

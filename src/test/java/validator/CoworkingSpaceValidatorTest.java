@@ -1,6 +1,6 @@
 package validator;
 
-import course.dao.CoworkingSpaceDAO;
+import course.repository.CoworkingSpaceRepository;
 import course.exception.ValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ public class CoworkingSpaceValidatorTest {
     private CoworkingSpaceValidator coworkingSpaceValidator;
 
     @BeforeEach
-    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceDAO()));}
+    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceRepository()));}
 
     @Test
     void getValidatePrice_notCorrectInput_throwValidationException(){
