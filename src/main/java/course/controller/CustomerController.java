@@ -35,13 +35,13 @@ public class CustomerController {
         return "redirect:/customer";
     }
 
-    @GetMapping("/bookings") //TODO
+    @GetMapping("/bookings")
     public String readBookings(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
         return "bookings";
     }
 
-    @GetMapping("/coworking-spaces") //TODO
+    @GetMapping("/coworking-spaces")
     public String readCoworkingSpaces(Model model) {
         model.addAttribute("coworkings", coworkingSpaceService.getAllCoworkingSpaces());
         return "coworking-spaces";

@@ -29,6 +29,6 @@ public class CoworkingSpace {
     private boolean availabilityStatus;
 
 
-    public CoworkingSpace(String name, TypeOfWorkspaces typeOfWorkspace, int priceDollars, boolean availabilityStatus) { //TODO
+    public CoworkingSpace(String name, TypeOfWorkspaces typeOfWorkspace, int priceDollars, boolean availabilityStatus) {
     }
 }
