@@ -15,7 +15,7 @@ public class BookingValidatorTest {
     private BookingValidator bookingValidator;
 
     @BeforeEach
-    public void prepareInstance() {bookingValidator = new BookingValidator(new BookingService(new BookingRepository()));}
+//    public void prepareInstance() {bookingValidator = new BookingValidator(new BookingService(new BookingRepository()));}
 
     @Test
     void getValidateDate_notCorrectInput_throwValidationException(){
