@@ -18,19 +18,19 @@ public class BookingService {
 
 
     public Optional<Booking> getBookingById(Long id) {
-        return Optional.ofNullable(bookingRepository.getBookingById(id));
+        return bookingRepository.findById(id);
     }
 
     public void cancelReservation(Long id) {
-        bookingRepository.deleteBooking(id);
+        bookingRepository.delete(getBookingById(id).orElseThrow());
     }
 
     public void makeReservation(Booking booking) {
-        bookingRepository.saveBooking(booking);
+        bookingRepository.save(booking);
     }
 
     public void viewMyReservations() {
-        List<Booking> bookings = bookingRepository.getAllBookings();
+        List<Booking> bookings = bookingRepository.findAll();
         System.out.printf("%-5s | %-20s | %-20s | %-15s | %-15s%n", "ID", "Customer Name", "Time Interval", "Booking Date", "Coworking Space");
         System.out.println("-----------------------------------------------------------------------------------------------------");
 
@@ -44,12 +44,12 @@ public class BookingService {
         }
     }
 
-    public void updateBooking(Long id, Booking booking) {
-        bookingRepository.updateBooking(booking, id);
+    public void updateBooking(Booking booking) {
+        bookingRepository.save(booking);
     }
 
     public List<Booking> getAllBookings() {
-        return bookingRepository.getAllBookings();
+        return bookingRepository.findAll();
     }
 
 }

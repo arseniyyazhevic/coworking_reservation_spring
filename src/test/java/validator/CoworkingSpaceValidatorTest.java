@@ -14,7 +14,7 @@ public class CoworkingSpaceValidatorTest {
     private CoworkingSpaceValidator coworkingSpaceValidator;
 
     @BeforeEach
-    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceRepository()));}
+//    public void prepareInstance() {coworkingSpaceValidator = new CoworkingSpaceValidator(new CoworkingSpaceService(new CoworkingSpaceRepository()));}
 
     @Test
     void getValidatePrice_notCorrectInput_throwValidationException(){

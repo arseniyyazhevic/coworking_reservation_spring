@@ -19,28 +19,23 @@ public class CoworkingSpaceService {
     }
 
     public Optional<CoworkingSpace> getCoworkingSpaceById(Long id) {
-//        Optional.ofNullable(CoworkingSpaceDBUtils.getCoworkingSpace(id))
-        return Optional.ofNullable(coworkingSpaceRepository.getCoworkingSpaceById(id));
+        return coworkingSpaceRepository.findById(id);
     }
 
     public void addCoworkingSpace(CoworkingSpace coworkingSpace) {
-//        CoworkingSpaceDBUtils.createCoworkingSpace(coworkingSpace);
-        coworkingSpaceRepository.saveCoworkingSpace(coworkingSpace);
+        coworkingSpaceRepository.save(coworkingSpace);
     }
 
-    public void updateAllInformationAboutCoworkingSpace(Long id, CoworkingSpace coworkingSpace) {
-//        CoworkingSpaceDBUtils.updateCoworkingSpace(id, coworkingSpace);
-//        coworkingSpaceDao.updateCoworkingSpace(id);
-        coworkingSpaceRepository.updateCoworkingSpace(coworkingSpace, id);
+    public void updateAllInformationAboutCoworkingSpace( CoworkingSpace coworkingSpace) {
+        coworkingSpaceRepository.save(coworkingSpace);
     }
 
     public void removeCoworkingSpace(Long id) {
-//        CoworkingSpaceDBUtils.deleteCoworkingSpace(id);
-        coworkingSpaceRepository.deleteCoworkingSpace(id);
+        coworkingSpaceRepository.delete(getCoworkingSpaceById(id).orElseThrow());
     }
 
     public List<CoworkingSpace> getAllCoworkingSpaces() {
-        return coworkingSpaceRepository.getAllCoworkingSpaces();
+        return coworkingSpaceRepository.findAll();
     }
 
 }

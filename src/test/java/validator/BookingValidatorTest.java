@@ -6,10 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import course.service.BookingService;
 import course.validation.BookingValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookingValidatorTest {
+
     private BookingValidator bookingValidator;
 
     @BeforeEach

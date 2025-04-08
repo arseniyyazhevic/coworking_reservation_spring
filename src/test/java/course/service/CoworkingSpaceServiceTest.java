@@ -14,9 +14,9 @@ class CoworkingSpaceServiceTest {
     private CoworkingSpaceService coworkingSpaceService;
 
     @BeforeEach
-    public void prepareTestInstance() {
-        coworkingSpaceService = new CoworkingSpaceService(new CoworkingSpaceRepository());
-    }
+//    public void prepareTestInstance() {
+//        coworkingSpaceService = new CoworkingSpaceService(new CoworkingSpaceRepository());
+//    }
 
     @Test
     void getCoworkingSpaceById_notFoundInMap_emptyOptional() {

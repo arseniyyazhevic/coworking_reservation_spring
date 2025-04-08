@@ -1,52 +1,23 @@
 package course.repository;
 
 import course.entity.Booking;
+import course.entity.CoworkingSpace;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
 @Repository
-public class BookingRepository {
+public interface BookingRepository extends JpaRepository<Booking, Long> {
+    List<Booking> findByCustomerName(String customerName);
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Transactional
-    public void saveBooking(Booking booking) {
-        entityManager.persist(booking);
-    }
-
-    @Transactional
-    public Booking getBookingById(Long id) {
-        return entityManager.find(Booking.class, id);
-    }
-
-    @Transactional
-    public List<Booking> getAllBookings() {
-        return entityManager.createQuery("from Booking", Booking.class).getResultList();
-    }
-
-    @Transactional
-    public void updateBooking(Booking booking, Long id) {
-        entityManager.createQuery("UPDATE Booking b SET b.customerName = :name, b.date = :date, b.startAndEndOfBookingTime = :timeInterval, b.coworkingSpace = :coworkingId WHERE b.id = :id")
-                .setParameter("name", booking.getCustomerName())
-                .setParameter("date", booking.getDate())
-                .setParameter("timeInterval", booking.getStartAndEndOfBookingTime())
-                .setParameter("coworkingId", booking.getCoworkingSpace())
-                .setParameter("id", id)
-                .executeUpdate();
-    }
-
-    @Transactional
-    public void deleteBooking(Long id) {
-        Booking booking = entityManager.find(Booking.class, id);
-        if (booking != null) {
-            entityManager.remove(booking);
-            System.out.println("Booking deleted successfully!");
-        }
-    }
 }
