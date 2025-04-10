@@ -14,9 +14,9 @@ public class BookingServiceTest {
     private BookingService bookingService;
 
     @BeforeEach
-    public void prepareTestInstance() {
-        bookingService = new BookingService(new BookingRepository());
-    }
+//    public void prepareTestInstance() {
+//        bookingService = new BookingService(new BookingRepository());
+//    }
 
     @Test
     void getBookingById_notFoundInMap_emptyOptional() {

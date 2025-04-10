@@ -40,7 +40,7 @@ public class AdminController {
 
     @PostMapping("/update-coworking")
     public String updateCoworking(@ModelAttribute CoworkingSpace coworkingSpace, @RequestParam("id") Long id) {
-        coworkingSpaceService.updateAllInformationAboutCoworkingSpace(id, coworkingSpace);
+        coworkingSpaceService.updateAllInformationAboutCoworkingSpace(coworkingSpace);
         return "redirect:/admin";
     }
 

@@ -50,7 +50,7 @@ public class CustomerController {
     @PostMapping("/update-booking")
     public String updateBooking(@RequestParam("id") Long id, @ModelAttribute Booking booking, @RequestParam("coworkingSpaceId") Long cowId){
         booking.setCoworkingSpace(coworkingSpaceService.getCoworkingSpaceById(cowId).orElseThrow());
-        bookingService.updateBooking(id, booking);
+        bookingService.updateBooking(booking);
         return "redirect:/customer";
     }
 
