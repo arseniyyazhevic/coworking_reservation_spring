@@ -1,20 +1,47 @@
 package course.service;
 
-import course.entity.roles.Admin;
-import course.entity.roles.Customer;
-import course.entity.roles.User;
+import course.entity.UserEntity;
+import course.exception.UserNotFoundException;
+import course.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
-//    public static HashSet<User> allUsers = new HashSet<>();
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
-    public User createUser(User userRole) {
-        if (userRole instanceof Admin) {
-            return new Admin();
-        } else {
-            return new Customer();
+    @Autowired
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+    public Optional<UserEntity> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public void addUser(UserEntity userEntity) {
+        userRepository.save(userEntity);
+    }
+
+    public void updateUser(UserEntity userEntity) {
+        userRepository.save(userEntity);
+    }
+
+    public void removeUser(Long id) {
+        try {
+            userRepository.delete(getUserById(id).orElseThrow(() -> new UserNotFoundException("Uncorrected user id")));
+        }catch (UserNotFoundException e){
+            System.err.println(e.getMessage());
         }
+    }
+
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
     }
 
 }

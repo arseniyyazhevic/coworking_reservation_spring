@@ -9,7 +9,7 @@
 
 <a th:href="@{/customer/coworking-spaces}">View Coworking Spaces</a>
 
-<form th:action="@{/customer/add-booking}" method="post">
+<form th:action="@{/customer/add-bookingEntity}" method="post">
     <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
     <input type="text" name="customerName" placeholder="Customer Name">
     <input type="date" name="date" placeholder="Booking Date">
@@ -17,7 +17,7 @@
     <button type="submit">Make Reservation</button>
 </form>
 
-<form th:action="@{/customer/update-booking}" method="post">
+<form th:action="@{/customer/update-bookingEntity}" method="post">
     <input type="text" name="id" placeholder="Booking ID">
     <input type="text" name="coworkingSpaceId" placeholder="Coworking ID">
     <input type="text" name="customerName" placeholder="Customer Name">
@@ -26,9 +26,9 @@
     <button type="submit">Update Booking</button>
 </form>
 
-<a th:href="@{/customer/bookings}">View My Reservations</a>
+<a th:href="@{/customer/bookingEntities}">View My Reservations</a>
 
-<form th:action="@{/customer/cancel-booking}" method="post">
+<form th:action="@{/customer/cancel-bookingEntity}" method="post">
     <input type="text" name="id" placeholder="Reservation ID">
     <button type="submit">Cancel Reservation</button>
 </form>

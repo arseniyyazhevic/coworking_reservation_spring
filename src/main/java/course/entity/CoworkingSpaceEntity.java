@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "coworking_spaces")
-public class CoworkingSpace {
+public class CoworkingSpaceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,6 @@ public class CoworkingSpace {
     private boolean availabilityStatus;
 
 
-    public CoworkingSpace(String name, TypeOfWorkspaces typeOfWorkspace, int priceDollars, boolean availabilityStatus) {
+    public CoworkingSpaceEntity(String name, TypeOfWorkspaces typeOfWorkspace, int priceDollars, boolean availabilityStatus) {
     }
 }

@@ -1,7 +1,7 @@
 package course.service;
 
+import course.entity.CoworkingSpaceEntity;
 import course.repository.CoworkingSpaceRepository;
-import course.entity.CoworkingSpace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -22,19 +22,19 @@ public class CoworkingSpaceService {
     }
 
     @Cacheable(value = "coworkingSpaces", key = "#id")
-    public Optional<CoworkingSpace> getCoworkingSpaceById(Long id) {
+    public Optional<CoworkingSpaceEntity> getCoworkingSpaceById(Long id) {
         return coworkingSpaceRepository.findById(id);
     }
 
-    @CachePut(value = "coworkingSpaces", key = "#coworkingSpace.id")
-    public void addCoworkingSpace(CoworkingSpace coworkingSpace) {
-        coworkingSpaceRepository.save(coworkingSpace);
+    @CachePut(value = "coworkingSpaces", key = "#coworkingSpaceEntity.id")
+    public void addCoworkingSpace(CoworkingSpaceEntity coworkingSpaceEntity) {
+        coworkingSpaceRepository.save(coworkingSpaceEntity);
     }
 
 
-    @CachePut(value = "coworkingSpaces", key = "#coworkingSpace.id")
-    public void updateAllInformationAboutCoworkingSpace(CoworkingSpace coworkingSpace) {
-        coworkingSpaceRepository.save(coworkingSpace);
+    @CachePut(value = "coworkingSpaces", key = "#coworkingSpaceEntity.id")
+    public void updateAllInformationAboutCoworkingSpace(CoworkingSpaceEntity coworkingSpaceEntity) {
+        coworkingSpaceRepository.save(coworkingSpaceEntity);
     }
 
     @CacheEvict(value = "coworkingSpaces", key = "#id")
@@ -43,7 +43,7 @@ public class CoworkingSpaceService {
     }
 
     @Cacheable(value = "allCoworkingSpaces")
-    public List<CoworkingSpace> getAllCoworkingSpaces() {
+    public List<CoworkingSpaceEntity> getAllCoworkingSpaces() {
         return coworkingSpaceRepository.findAll();
     }
 

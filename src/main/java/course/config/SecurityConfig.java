@@ -1,5 +1,7 @@
 package course.config;
 
+import course.entity.UserEntity;
+import course.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,7 +26,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/user", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -35,15 +37,18 @@ public class SecurityConfig {
         return http.build();
     }
 
+
+    public UserDetails
     @Bean
     public UserDetailsService userDetailsService() {
-        var user = User.withDefaultPasswordEncoder()
+
+        var user = User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("userpass"))
                 .roles("USER")
                 .build();
 
-        var admin = User.withDefaultPasswordEncoder()
+        var admin = User.builder()
                 .username("admin")
                 .password(passwordEncoder().encode("adminpass"))
                 .roles("ADMIN")

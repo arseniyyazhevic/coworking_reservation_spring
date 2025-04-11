@@ -1,7 +1,7 @@
 package course.service;
 
+import course.entity.BookingEntity;
 import course.repository.BookingRepository;
-import course.entity.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -20,7 +20,7 @@ public class BookingService {
     }
 
     @Cacheable(value="bookings", key="#id")
-    public Optional<Booking> getBookingById(Long id) {
+    public Optional<BookingEntity> getBookingById(Long id) {
         return bookingRepository.findById(id);
     }
     @CacheEvict(value="bookings", key="id")
@@ -28,32 +28,18 @@ public class BookingService {
         bookingRepository.delete(getBookingById(id).orElseThrow());
     }
 
-    @CachePut(value="bookings", key="#booking.id")
-    public void makeReservation(Booking booking) {
-        bookingRepository.save(booking);
+    @CachePut(value="bookings", key="#bookingEntity.id")
+    public void makeReservation(BookingEntity bookingEntity) {
+        bookingRepository.save(bookingEntity);
     }
 
-    public void viewMyReservations() {
-        List<Booking> bookings = bookingRepository.findAll();
-        System.out.printf("%-5s | %-20s | %-20s | %-15s | %-15s%n", "ID", "Customer Name", "Time Interval", "Booking Date", "Coworking Space");
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-
-        for (Booking booking : bookings) {
-            System.out.printf("%-5d | %-20s | %-20s | %-15s | %-15s%n",
-                    booking.getId(),
-                    booking.getCustomerName(),
-                    booking.getStartAndEndOfBookingTime(),
-                    booking.getDate(),
-                    booking.getCoworkingSpace().getName());
-        }
-    }
-    @CachePut(value="bookings", key="#booking.id")
-    public void updateBooking(Booking booking) {
-        bookingRepository.save(booking);
+    @CachePut(value="bookings", key="#bookingEntity.id")
+    public void updateBooking(BookingEntity bookingEntity) {
+        bookingRepository.save(bookingEntity);
     }
 
     @Cacheable(value = "allBookings")
-    public List<Booking> getAllBookings() {
+    public List<BookingEntity> getAllBookings() {
         return bookingRepository.findAll();
     }
 

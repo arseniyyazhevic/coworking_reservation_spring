@@ -1,14 +1,12 @@
 package course.controller;
 
-import course.entity.Booking;
+import course.entity.BookingEntity;
 import course.service.BookingService;
 import course.service.CoworkingSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/customer")
@@ -29,9 +27,9 @@ public class CustomerController {
     }
 
     @PostMapping("/add-booking")
-    public String addBooking(@ModelAttribute Booking booking, @RequestParam("coworkingSpaceId") Long cowId) {
-        booking.setCoworkingSpace(coworkingSpaceService.getCoworkingSpaceById(cowId).orElseThrow());
-        bookingService.makeReservation(booking);
+    public String addBooking(@ModelAttribute BookingEntity bookingEntity, @RequestParam("coworkingSpaceId") Long cowId) {
+        bookingEntity.setCoworkingSpaceEntity(coworkingSpaceService.getCoworkingSpaceById(cowId).orElseThrow());
+        bookingService.makeReservation(bookingEntity);
         return "redirect:/customer";
     }
 
@@ -48,9 +46,9 @@ public class CustomerController {
     }
 
     @PostMapping("/update-booking")
-    public String updateBooking(@RequestParam("id") Long id, @ModelAttribute Booking booking, @RequestParam("coworkingSpaceId") Long cowId){
-        booking.setCoworkingSpace(coworkingSpaceService.getCoworkingSpaceById(cowId).orElseThrow());
-        bookingService.updateBooking(booking);
+    public String updateBooking(@RequestParam("id") Long id, @ModelAttribute BookingEntity bookingEntity, @RequestParam("coworkingSpaceId") Long cowId){
+        bookingEntity.setCoworkingSpaceEntity(coworkingSpaceService.getCoworkingSpaceById(cowId).orElseThrow());
+        bookingService.updateBooking(bookingEntity);
         return "redirect:/customer";
     }
 
