@@ -23,7 +23,7 @@ public class CustomerController {
 
     @GetMapping
     public String showForm() {
-        return "customer";
+        return "customer/customer";
     }
 
     @PostMapping("/add-booking")

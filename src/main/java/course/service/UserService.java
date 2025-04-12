@@ -1,9 +1,11 @@
 package course.service;
 
 import course.entity.UserEntity;
+import course.enums.Role;
 import course.exception.UserNotFoundException;
 import course.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class UserService {
 
     public void addUser(UserEntity userEntity) {
         userRepository.save(userEntity);
+    }
+
+    public Long createUser(UserEntity userEntity) {
+        userEntity.setRole(Role.ROLE_USER);
+        return userRepository.save(userEntity).getId();
     }
 
     public void updateUser(UserEntity userEntity) {

@@ -7,15 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class MainController {
-
-    @GetMapping
-    public String showForm() {
-        return "home";
+    @GetMapping("/")
+    public String homeRedirect() {
+        return "redirect:/register";
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
 }

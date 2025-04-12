@@ -23,7 +23,7 @@ public class AdminController {
 
     @GetMapping
     public String showForm() {
-        return "admin";
+        return "admin/admin";
     }
 
     @PostMapping("/add-coworking")
