@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bookingEntity : ${bookingEntities}">
+        <tr th:each="bookingEntity : ${bookings}">
             <td th:text="${bookingEntity.id}"></td>
             <td th:text="${bookingEntity.customerName}"></td>
             <td th:text="${bookingEntity.startAndEndOfBookingTime}"></td>
@@ -30,6 +30,6 @@
     </table>
 </div>
 
-<a th:href="@{/admin}">Bake Admin Panel</a>
+<a th:href="@{/customer}">Bake Panel</a>
 </body>
 </html>

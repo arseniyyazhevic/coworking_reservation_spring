@@ -32,9 +32,9 @@ import org.springframework.web.bind.annotation.PostMapping;
         public String dashboard(Authentication auth) {
             if (auth.getAuthorities().stream()
                     .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")))
-                return "redirect:/admin/dashboard";
+                return "redirect:/admin";
             else
-                return "redirect:/user/dashboard";
+                return "redirect:/customer";
         }
 
         @GetMapping("/login")

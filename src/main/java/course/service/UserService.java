@@ -30,9 +30,10 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    public Long createUser(UserEntity userEntity) {
+    public void createUser(UserEntity userEntity) {
         userEntity.setRole(Role.ROLE_USER);
-        return userRepository.save(userEntity).getId();
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+        userRepository.save(userEntity);
     }
 
     public void updateUser(UserEntity userEntity) {
