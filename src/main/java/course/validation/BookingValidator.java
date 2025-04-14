@@ -11,13 +11,14 @@ import java.time.LocalDate;
 
 @Component
 public class BookingValidator extends Validator {
-
+    private BookingValidator bookingValidator;
     private final BookingService bookingService;
-
     @Autowired
-    public BookingValidator(BookingService bookingService) {
+    private BookingValidator(BookingService bookingService) {
         this.bookingService = bookingService;
     }
+
+
     public LocalDate validateDate(String dateStr) throws ValidationException {
         LocalDate date = null;
         String[] userInput;
@@ -50,5 +51,12 @@ public class BookingValidator extends Validator {
     public Long validateIdBook(Long id) throws ValidationException {
         bookingService.getBookingById(id).orElseThrow(() -> new ValidationException(", booking with this id does not exist"));
         return id;
+    }
+
+    public BookingValidator getInstance() {
+        if(bookingValidator.equals(null)) {
+            bookingValidator = new BookingValidator(bookingService);
+        }
+        return bookingValidator;
     }
 }
