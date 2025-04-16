@@ -32,7 +32,9 @@ public class BookingService {
     }
     @CacheEvict(value="bookings", key="id")
     public void cancelReservation(Long id) {
-        bookingRepository.delete(getBookingById(id).orElseThrow());
+        BookingEntity bookingEntity =  bookingRepository.findById(id).orElseThrow();
+        bookingHistoryService.saveSnapshot(bookingEntity);
+        bookingRepository.delete(bookingEntity);
     }
 
     @CachePut(value="bookings", key="#bookingEntity.id")
@@ -42,23 +44,13 @@ public class BookingService {
 
     @CachePut(value="bookings", key="#bookingEntity.id")
     public void updateBooking(BookingEntity bookingEntity) {
+        bookingHistoryService.saveSnapshot(bookingEntity);
         bookingRepository.save(bookingEntity);
     }
 
     @Cacheable(value = "allBookings")
     public List<BookingEntity> getAllBookings() {
         return bookingRepository.findAll();
-    }
-
-
-    public void updateBookingWithHistory(Long bookingId, String newCustomerName, String newInterval, LocalDate newDate) {
-        BookingEntity booking = bookingRepository.findById(bookingId).orElseThrow();
-        bookingHistoryService.saveSnapshot(booking);
-
-        booking.setCustomerName(newCustomerName);
-        booking.setStartAndEndOfBookingTime(newInterval);
-        booking.setDate(newDate);
-        bookingRepository.save(booking);
     }
 
     public void undoBookingChange(Long bookingId) {

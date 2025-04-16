@@ -57,4 +57,11 @@ public class CustomerController {
         bookingService.cancelReservation(id);
         return "redirect:/customer";
     }
+
+    @PostMapping("/undo")
+    public String undoBooking(@RequestParam("id") Long id) {
+        bookingService.undoBookingChange(id);
+        return "redirect:/customer";
+    }
+
 }
