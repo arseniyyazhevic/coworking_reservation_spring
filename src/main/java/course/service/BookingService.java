@@ -1,60 +1,70 @@
 package course.service;
 
+import course.entity.BookingEntity;
+import course.entity.BookingHistoryEntity;
+import course.repository.BookingHistoryRepository;
 import course.repository.BookingRepository;
-import course.entity.Booking;
+import course.service.memento.BookingHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+
+    private final BookingHistoryService bookingHistoryService;
     @Autowired
-    public BookingService(BookingRepository bookingRepository) {
+    public BookingService(BookingRepository bookingRepository, BookingHistoryService bookingHistoryService) {
         this.bookingRepository = bookingRepository;
+        this.bookingHistoryService = bookingHistoryService;
     }
 
     @Cacheable(value="bookings", key="#id")
-    public Optional<Booking> getBookingById(Long id) {
+    public Optional<BookingEntity> getBookingById(Long id) {
         return bookingRepository.findById(id);
     }
     @CacheEvict(value="bookings", key="id")
     public void cancelReservation(Long id) {
-        bookingRepository.delete(getBookingById(id).orElseThrow());
+        BookingEntity bookingEntity =  bookingRepository.findById(id).orElseThrow();
+        bookingHistoryService.saveSnapshot(bookingEntity);
+        bookingRepository.delete(bookingEntity);
     }
 
-    @CachePut(value="bookings", key="#booking.id")
-    public void makeReservation(Booking booking) {
-        bookingRepository.save(booking);
+    @CachePut(value="bookings", key="#bookingEntity.id")
+    public void makeReservation(BookingEntity bookingEntity) {
+        bookingRepository.save(bookingEntity);
     }
 
-    public void viewMyReservations() {
-        List<Booking> bookings = bookingRepository.findAll();
-        System.out.printf("%-5s | %-20s | %-20s | %-15s | %-15s%n", "ID", "Customer Name", "Time Interval", "Booking Date", "Coworking Space");
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-
-        for (Booking booking : bookings) {
-            System.out.printf("%-5d | %-20s | %-20s | %-15s | %-15s%n",
-                    booking.getId(),
-                    booking.getCustomerName(),
-                    booking.getStartAndEndOfBookingTime(),
-                    booking.getDate(),
-                    booking.getCoworkingSpace().getName());
-        }
-    }
-    @CachePut(value="bookings", key="#booking.id")
-    public void updateBooking(Booking booking) {
-        bookingRepository.save(booking);
+    @CachePut(value="bookings", key="#bookingEntity.id")
+    public void updateBooking(BookingEntity bookingEntity) {
+        bookingHistoryService.saveSnapshot(bookingEntity);
+        bookingRepository.save(bookingEntity);
     }
 
     @Cacheable(value = "allBookings")
-    public List<Booking> getAllBookings() {
+    public List<BookingEntity> getAllBookings() {
         return bookingRepository.findAll();
+    }
+
+    public void undoBookingChange(Long bookingId) {
+        BookingEntity booking = bookingRepository.findById(bookingId).orElseThrow();
+        Optional<BookingHistoryEntity> snapshotOpt = bookingHistoryService.getLastSnapshot(bookingId);
+
+        if (snapshotOpt.isPresent()) {
+            BookingHistoryEntity snapshot = snapshotOpt.get();
+            booking.setCustomerName(snapshot.getCustomerName());
+            booking.setStartAndEndOfBookingTime(snapshot.getStartAndEndOfBookingTime());
+            booking.setDate(snapshot.getDate());
+            booking.setCoworkingSpaceEntity(snapshot.getCoworkingSpaceEntity());
+            bookingRepository.save(booking);
+        }
     }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BookingValidatorTest {
+public class BookingEntityValidatorTest {
 
     private BookingValidator bookingValidator;
 

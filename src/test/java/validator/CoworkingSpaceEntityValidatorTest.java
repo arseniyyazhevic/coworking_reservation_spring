@@ -10,7 +10,7 @@ import course.validation.CoworkingSpaceValidator;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CoworkingSpaceValidatorTest {
+public class CoworkingSpaceEntityValidatorTest {
     private CoworkingSpaceValidator coworkingSpaceValidator;
 
     @BeforeEach

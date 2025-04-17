@@ -33,6 +33,13 @@
     <button type="submit">Cancel Reservation</button>
 </form>
 
+<form th:action="@{/customer/undo}" method="post">
+    <input type="text" name="id" placeholder="Reservation ID">
+    <button type="submit">Undo Booking</button>
+</form>
+
 <a th:href="@{/}">Back to Home</a>
+
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.bookings
+CREATE TABLE IF NOT EXISTS public.bookingEntities
 (
 
     customer_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS public.coworking_spaces
     price_dollars numeric NOT NULL,
     availability_status boolean NOT NULL,
     CONSTRAINT coworking_spaces_pkey PRIMARY KEY (id)
-)
+);
 
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id SERIAL PRIMARY KEY,
+    username character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    role character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+);
 

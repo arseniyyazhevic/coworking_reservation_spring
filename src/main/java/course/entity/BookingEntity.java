@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "bookings")
-public class Booking {
+public class BookingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "coworking_space_id")
-    private CoworkingSpace coworkingSpace;
+    private CoworkingSpaceEntity coworkingSpaceEntity;
 
 
-    public Booking(String customerName, String timeInterval, LocalDate date, int coworkingSpaceId) {
+    public BookingEntity(String customerName, String timeInterval, LocalDate date, int coworkingSpaceId) {
     }
 }

@@ -1,6 +1,6 @@
 package course.controller;
 
-import course.entity.CoworkingSpace;
+import course.entity.CoworkingSpaceEntity;
 import course.service.BookingService;
 import course.service.CoworkingSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class AdminController {
 
     @GetMapping
     public String showForm() {
-        return "admin";
+        return "admin/admin";
     }
 
     @PostMapping("/add-coworking")
-    public String addCoworking(@ModelAttribute CoworkingSpace coworkingSpace) {
-        coworkingSpaceService.addCoworkingSpace(coworkingSpace);
+    public String addCoworking(@ModelAttribute CoworkingSpaceEntity coworkingSpaceEntity) {
+        coworkingSpaceService.addCoworkingSpace(coworkingSpaceEntity);
         return "redirect:/admin";
     }
 
@@ -39,8 +39,8 @@ public class AdminController {
     }
 
     @PostMapping("/update-coworking")
-    public String updateCoworking(@ModelAttribute CoworkingSpace coworkingSpace, @RequestParam("id") Long id) {
-        coworkingSpaceService.updateAllInformationAboutCoworkingSpace(coworkingSpace);
+    public String updateCoworking(@ModelAttribute CoworkingSpaceEntity coworkingSpaceEntity, @RequestParam("id") Long id) {
+        coworkingSpaceService.updateAllInformationAboutCoworkingSpace(coworkingSpaceEntity);
         return "redirect:/admin";
     }
 

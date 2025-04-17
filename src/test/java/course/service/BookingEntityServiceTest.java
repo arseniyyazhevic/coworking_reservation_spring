@@ -1,7 +1,6 @@
 package course.service;
 
-import course.repository.BookingRepository;
-import course.entity.Booking;
+import course.entity.BookingEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BookingServiceTest {
+public class BookingEntityServiceTest {
     private BookingService bookingService;
 
     @BeforeEach
@@ -21,13 +20,13 @@ public class BookingServiceTest {
     @Test
     void getBookingById_notFoundInMap_emptyOptional() {
 
-        Optional<Booking> booking = bookingService.getBookingById(100L);
+        Optional<BookingEntity> booking = bookingService.getBookingById(100L);
 
         assertFalse(booking.isPresent());
     }
     @Test
     void getBookingById_FoundInMap_bookingFromFile(){
-        Optional<Booking> booking = bookingService.getBookingById(1L);
+        Optional<BookingEntity> booking = bookingService.getBookingById(1L);
 
         assertTrue(booking.isPresent());
     }

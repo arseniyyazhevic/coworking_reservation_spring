@@ -19,17 +19,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="booking : ${bookings}">
-            <td th:text="${booking.id}"></td>
-            <td th:text="${booking.customerName}"></td>
-            <td th:text="${booking.startAndEndOfBookingTime}"></td>
-            <td th:text="${booking.date}"></td>
-            <td th:text="${booking.coworkingSpace.name}"></td>
+        <tr th:each="bookingEntity : ${bookings}">
+            <td th:text="${bookingEntity.id}"></td>
+            <td th:text="${bookingEntity.customerName}"></td>
+            <td th:text="${bookingEntity.startAndEndOfBookingTime}"></td>
+            <td th:text="${bookingEntity.date}"></td>
+            <td th:text="${bookingEntity.coworkingSpaceEntity.name}"></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<a th:href="@{/admin}">Bake Admin Panel</a>
+<a th:href="@{/customer}">Bake Panel</a>
 </body>
 </html>
